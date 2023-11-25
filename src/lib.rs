@@ -6,6 +6,14 @@ pub mod timers;
 pub use functions::*;
 pub use timers::*;
 
+pub trait Timer {
+    fn time(&self) -> TimingStats;
+
+    fn time_and_print(&self) {
+        println!("{}", self.time());
+    }
+}
+
 #[derive(Debug, PartialEq)]
 pub struct TimingStats {
     label: String,

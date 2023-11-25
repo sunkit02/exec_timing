@@ -77,6 +77,10 @@ where
 
 pub trait Timer {
     fn time(&self) -> TimingStats;
+
+    fn time_and_print(&self) {
+        println!("{}", self.time());
+    }
 }
 
 #[derive(Debug, PartialEq)]
