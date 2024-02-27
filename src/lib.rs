@@ -2,13 +2,16 @@ use std::{fmt::Display, time::Duration};
 
 pub mod functions;
 pub mod timers;
+pub mod iter_ext;
 
 pub use functions::*;
 pub use timers::*;
+pub use iter_ext::*;
 
 pub trait Timer {
     fn time(&self) -> TimingStats;
 
+    /// Directly print output of `time` method to the console after invoking it.
     fn time_and_print(&self) {
         println!("{}", self.time());
     }

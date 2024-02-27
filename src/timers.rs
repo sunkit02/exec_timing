@@ -1,6 +1,6 @@
 use std::time::{Duration, Instant};
 
-use crate::TimingStats;
+use crate::{Timer, TimingStats};
 
 const DEFAULT_RUNS: usize = 1;
 const DEFAULT_LABEL: &str = "No Label";
@@ -72,14 +72,6 @@ where
             args_fn: self.args_f,
             runs: self.runs,
         }
-    }
-}
-
-pub trait Timer {
-    fn time(&self) -> TimingStats;
-
-    fn time_and_print(&self) {
-        println!("{}", self.time());
     }
 }
 

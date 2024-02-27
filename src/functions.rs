@@ -2,9 +2,9 @@ use std::time::{Duration, Instant};
 
 use crate::TimingStats;
 
-pub fn time<F>(label: &str, runs: usize, time_fn: F) -> TimingStats
+pub fn time<F, O>(label: &str, runs: usize, mut time_fn: F) -> TimingStats
 where
-    F: Fn(),
+    F: FnMut() -> O,
 {
     let label = label.to_string();
 
@@ -32,14 +32,14 @@ where
     };
 }
 
-pub fn time_with_args<F, ArgsFn, Args>(
+pub fn time_with_args<F, ArgsFn, Args, O>(
     label: &str,
     runs: usize,
     args_fn: ArgsFn,
-    time_fn: F,
+    mut time_fn: F,
 ) -> TimingStats
 where
-    F: Fn(Args),
+    F: FnMut(Args) -> O,
     ArgsFn: Fn() -> Args,
 {
     let label = label.to_string();
